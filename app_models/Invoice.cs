@@ -1,15 +1,18 @@
-﻿using app_models;
-using System;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-namespace BillingManagement.UI.ViewModels
+namespace app_models
 {
-    public class InvoiceViewModel: BaseViewModel
+    public class Invoice: INotifyPropertyChanged
     {
         const double txQC = 0.05;
         const double txCA = 0.09975;
         
         private Customer customer;
         private double subTotal;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static int InvoiceId { get; set; }
         public DateTime CreationDateTime { get; private set; }
@@ -46,17 +49,23 @@ namespace BillingManagement.UI.ViewModels
             get { return SubTotal + FedTax + ProvTax; }
         }
 
-        public InvoiceViewModel(Customer client)
+        public Invoice(Customer client)
         {
             Customer = client;
             CreationDateTime = DateTime.Now;
             InvoiceId++;
         }
 
-        public InvoiceViewModel()
+        public Invoice()
         {
             CreationDateTime = DateTime.Now;
             InvoiceId++;
         }
+
+        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
+
 }
