@@ -83,6 +83,19 @@ namespace app_models
 
         public string Info => $"{LastName}, {Name}";
 
+        private ObservableCollection<Invoice> invoices;
+
+        public ObservableCollection<Invoice> Invoices
+        {
+            get =>invoices; 
+            set 
+            { 
+                invoices = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         #endregion
 
         public Customer()

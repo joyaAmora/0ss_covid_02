@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace app_models
 {
@@ -14,7 +15,7 @@ namespace app_models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static int InvoiceId { get; set; }
+        public static int InvoiceId;
         public DateTime CreationDateTime { get; private set; }
         public Customer Customer {
 
@@ -53,13 +54,13 @@ namespace app_models
         {
             Customer = client;
             CreationDateTime = DateTime.Now;
-            InvoiceId++;
+            InvoiceId = Interlocked.Increment(ref InvoiceId);
         }
 
         public Invoice()
         {
             CreationDateTime = DateTime.Now;
-            InvoiceId++;
+            InvoiceId = Interlocked.Increment(ref InvoiceId);
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)

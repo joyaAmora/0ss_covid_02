@@ -518,23 +518,6 @@ namespace BillingManagement.Business
                 new ContactInfo() {ContactType="Email", Contact="ligula.elit.pretium@necmaurisblandit.net"},
             };
 
-            contactInfos = new ContactInfosDataService().GetAll().ToList();
-
-            Random rnd = new Random();
-
-            foreach (Customer c in customers)
-            {
-                c.ContactInfos = new ObservableCollection<ContactInfo>();
-
-                var nbContacts = rnd.Next(1, 4);
-
-                for (int i = 0; i < nbContacts; i++)
-                {
-                    var index = rnd.Next(contactInfos.Count);
-                    var ci = contactInfos[index];
-                    c.ContactInfos.Add(ci);
-                }
-            }
         }
 
         public IEnumerable<ContactInfo> GetAll()
