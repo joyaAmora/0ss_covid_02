@@ -9,28 +9,20 @@ namespace BillingManagement.Business
 {
    public class InvoicesDataService : IDataService<Invoice>
     {
-        List<Invoice> invoices;
-        List<Customer> customers;
+        List<Invoice> invoices = new List<Invoice>();
 
-        public InvoicesDataService(CustomersDataService customerDS)
+        public InvoicesDataService()
         {
-            customers = customerDS.GetAll().ToList();
-
             Random rnd = new Random();
 
-            foreach (Customer c in customers)
+            for (int i = 0; i < 500; i++)
             {
-                c.Invoices = new ObservableCollection<Invoice>();
-
-                var nbInvoices = rnd.Next(1, 5);
-
-                for (int i = 0; i < nbInvoices; i++)
+                var subTotalRnd = rnd.Next(10, 1000);
+                Invoice newInvoice = new Invoice()
                 {
-                    var invoice = new Invoice();
-                    invoice.Customer = c;
-                    invoice.SubTotal = rnd.Next(5, 1001);
-                    c.Invoices.Add(invoice);
-                }
+                    SubTotal = subTotalRnd
+                };
+                invoices.Add(newInvoice);
             }
         }
         public IEnumerable<Invoice> GetAll()

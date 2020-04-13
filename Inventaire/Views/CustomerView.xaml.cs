@@ -1,5 +1,6 @@
 ﻿using app_models;
 using BillingManagement.UI.ViewModels;
+using System;
 using System.Windows;
 
 namespace Inventaire
@@ -43,6 +44,11 @@ namespace Inventaire
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("allo");
         }
     }
 }
