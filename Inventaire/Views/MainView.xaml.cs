@@ -8,11 +8,11 @@ namespace Inventaire
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class CustomerView : Window
+    public partial class MainView : Window
     {
         CustomerViewModel _vm;
 
-        public CustomerView(CustomerViewModel vm)
+        public MainView(CustomerViewModel vm)
         {
             InitializeComponent();
 
@@ -46,9 +46,5 @@ namespace Inventaire
             App.Current.Shutdown();
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("allo");
-        }
     }
 }

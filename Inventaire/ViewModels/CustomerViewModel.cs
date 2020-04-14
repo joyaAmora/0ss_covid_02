@@ -30,36 +30,8 @@ namespace BillingManagement.UI.ViewModels
             {
                 selectedCustomer = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(CustomerContactsInfos));
             }
         }
-
-        private string customerContactsInfos;
-
-        public string CustomerContactsInfos
-        {
-            get 
-            {
-                if (selectedCustomer != null)
-                {
-                    var contact = new StringBuilder();
-                    foreach (var contacts in SelectedCustomer.ContactInfos)
-                    {
-                        contact.AppendLine(contacts.ContactType.ToString() + " : " + contacts.Contact.ToString());
-                    }
-                    return contact.ToString();
-                }
-                else
-                    return "";
-
-            }
-            set 
-            { 
-                customerContactsInfos = value;
-                OnPropertyChanged();
-            }
-        }
-
 
         public CustomerViewModel()
         {
@@ -69,8 +41,7 @@ namespace BillingManagement.UI.ViewModels
         private void InitValues()
         {
             Customers = new ObservableCollection<Customer>(customersDataService.GetAll());
-            ContactInfosDataService contact = new ContactInfosDataService();
-            InvoicesDataService invoicesDataService = new InvoicesDataService();
+            //InvoicesDataService invoicesDataService = new InvoicesDataService();
             Debug.WriteLine(Customers.Count);
         }
 

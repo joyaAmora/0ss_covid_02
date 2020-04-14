@@ -1,0 +1,74 @@
+﻿<Window x:Class="Inventaire.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Inventaire"
+        mc:Ignorable="d"
+        Title="Main View" Width="800" Height="500"
+        MinHeight="600" MinWidth="640"
+        DataContext="{Binding RelativeSource={RelativeSource self}}">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="_Fichier">
+                    <MenuItem Header="_Ouvrir..." Click="MenuItem_Click"/>
+                    <MenuItem Header="_Sauvegarder"/>
+                    <MenuItem Header="_Fermer"/>
+                    <Separator/>
+                    <MenuItem Header="_Nouveau client" Click="CustomerNew_Click"/>
+                    <Separator/>
+                    <MenuItem Header="_Quitter" Click="Exit_Click"/>
+                </MenuItem>
+                <MenuItem Header="_Édition">
+                    <MenuItem Header="Couper..."/>
+                    <MenuItem Header="Copier"/>
+                    <MenuItem Header="Coller"/>
+                </MenuItem>
+                <MenuItem Header="Affichage">
+                    <MenuItem Header="Fonction 1"/>
+                    <MenuItem Header="Fonction 2"/>
+                    <MenuItem Header="Fonction 3"/>
+                </MenuItem>
+            </Menu>
+        </StackPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <Button Click="CustomerNew_Click">
+                <Image Source="/images/new_user.png" Height="32" Width="32" Stretch="Uniform"/>
+            </Button>
+            <Separator/>
+            <Button Click="Exit_Click">
+                <Image Source="/images/exit.png" Height="32" Width="32" Stretch="Uniform"/>
+            </Button>
+        </ToolBar>
+        <StatusBar DockPanel.Dock="Bottom" Height="25">
+            <TextBlock Text="Client sélectionné : " />
+            <TextBlock Text="{Binding SelectedCustomer.Info}" />
+        </StatusBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Margin="6" Orientation="Horizontal" x:Name="spHeader">
+                    <TextBlock Text="Liste des clients" />
+                </StackPanel>
+                <ListView Grid.Row="1" ItemsSource="{Binding Customers}"
+                          SelectedItem="{Binding SelectedCustomer}"
+                          x:Name="lvCustomers">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Info}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
+        </Grid>        
+    </DockPanel>
+</Window>
