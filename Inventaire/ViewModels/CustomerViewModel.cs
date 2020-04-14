@@ -41,7 +41,6 @@ namespace BillingManagement.UI.ViewModels
         private void InitValues()
         {
             Customers = new ObservableCollection<Customer>(customersDataService.GetAll());
-            //InvoicesDataService invoicesDataService = new InvoicesDataService();
             Debug.WriteLine(Customers.Count);
         }
 

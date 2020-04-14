@@ -83,7 +83,7 @@ namespace app_models
 
         public string Info => $"{LastName}, {Name}";
 
-        private ObservableCollection<Invoice> invoices;
+        private ObservableCollection<Invoice> invoices = new ObservableCollection<Invoice>();
 
         public ObservableCollection<Invoice> Invoices
         {

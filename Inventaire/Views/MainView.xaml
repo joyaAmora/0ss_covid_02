@@ -4,10 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Inventaire"
+        xmlns:vm="clr-namespace:BillingManagement.UI.ViewModels"
+        xmlns:views="clr-namespace:BillingManagement.UI.Views"
         mc:Ignorable="d"
         Title="Main View" Width="800" Height="500"
-        MinHeight="600" MinWidth="640"
-        DataContext="{Binding RelativeSource={RelativeSource self}}">
+        MinHeight="600" MinWidth="640">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type vm:CustomerViewModel}">
+            <views:CustomerView/>
+        </DataTemplate>        
+        <DataTemplate DataType="{x:Type vm:InvoiceViewModel}">
+            <views:InvoiceView/>
+        </DataTemplate>
+    </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top">
             <Menu>
@@ -43,32 +52,7 @@
         </ToolBar>
         <StatusBar DockPanel.Dock="Bottom" Height="25">
             <TextBlock Text="Client sélectionné : " />
-            <TextBlock Text="{Binding SelectedCustomer.Info}" />
         </StatusBar>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <StackPanel Margin="6" Orientation="Horizontal" x:Name="spHeader">
-                    <TextBlock Text="Liste des clients" />
-                </StackPanel>
-                <ListView Grid.Row="1" ItemsSource="{Binding Customers}"
-                          SelectedItem="{Binding SelectedCustomer}"
-                          x:Name="lvCustomers">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Info}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-            
-        </Grid>        
+        <ContentPresenter Content="{Binding ContentViewModel}"/>
     </DockPanel>
 </Window>

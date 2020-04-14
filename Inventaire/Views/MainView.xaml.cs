@@ -10,34 +10,31 @@ namespace Inventaire
     /// </summary>
     public partial class MainView : Window
     {
-        CustomerViewModel _vm;
 
-        public MainView(CustomerViewModel vm)
-        {
+        public MainView()
+        {    
             InitializeComponent();
-
-            _vm = vm;
-            DataContext = _vm;
+            DataContext = new MainViewModel();
         }
 
 
         private void CustomerNew_Click(object sender, RoutedEventArgs e)
         {
-            Customer temp = new Customer() { Name = "Undefined", LastName = "Undefined" };
-            _vm.Customers.Add(temp);
-            _vm.SelectedCustomer = temp;            
+            //Customer temp = new Customer() { Name = "Undefined", LastName = "Undefined" };
+            //_vm.Customers.Add(temp);
+            //_vm.SelectedCustomer = temp;            
         }
 
         private void CustomerDelete_Click(object sender, RoutedEventArgs e)
         {
-            int currentIndex = _vm.Customers.IndexOf(_vm.SelectedCustomer);
+            //int currentIndex = _vm.Customers.IndexOf(_vm.SelectedCustomer);
 
-            if (currentIndex > 0)
-                currentIndex--;
+            //if (currentIndex > 0)
+            //    currentIndex--;
 
-            _vm.Customers.Remove(_vm.SelectedCustomer);
+            //_vm.Customers.Remove(_vm.SelectedCustomer);
 
-            lvCustomers.SelectedIndex = currentIndex;
+            //lvCustomers.SelectedIndex = currentIndex;
 
         }
 
@@ -46,5 +43,9 @@ namespace Inventaire
             App.Current.Shutdown();
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("bouh");
+        }
     }
 }

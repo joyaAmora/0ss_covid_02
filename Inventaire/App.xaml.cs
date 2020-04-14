@@ -11,10 +11,9 @@ namespace Inventaire
         MainView _window;
 
         public App()
-        {
-            CustomerViewModel vm = new CustomerViewModel();
+        { 
 
-            _window = new MainView(vm);
+            _window = new MainView();
 
             _window.Show();
         }

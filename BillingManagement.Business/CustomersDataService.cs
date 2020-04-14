@@ -121,7 +121,7 @@ namespace BillingManagement.Business
 
 
             List<ContactInfo> contactInfos = new ContactInfosDataService().GetAll().ToList();
-            invoices = new InvoicesDataService().GetAll().ToList();
+            //invoices = new InvoicesDataService().GetAll().ToList();
 
             Random rnd = new Random();
 
@@ -136,18 +136,6 @@ namespace BillingManagement.Business
                     var index = rnd.Next(contactInfos.Count);
                     var ci = contactInfos[index];
                     c.ContactInfos.Add(ci);
-                }
-
-                c.Invoices = new ObservableCollection<Invoice>();
-
-                var nbInvoices = rnd.Next(1, 5);
-
-                for (int i = 0; i < nbInvoices; i++)
-                {
-                    var index = rnd.Next(invoices.Count);
-                    var customerInvoice = invoices[index];
-                    customerInvoice.Customer = c;
-                    c.Invoices.Add(customerInvoice);
                 }
             }
         }
