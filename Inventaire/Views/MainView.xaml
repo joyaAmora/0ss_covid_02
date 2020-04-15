@@ -38,6 +38,10 @@
                     <MenuItem Header="Fonction 1"/>
                     <MenuItem Header="Fonction 2"/>
                     <MenuItem Header="Fonction 3"/>
+                </MenuItem>                
+                <MenuItem Header="Enregistrement">
+                    <MenuItem Header="Clients" Command="{Binding ChangeViewCommand}" CommandParameter="customer"/>
+                    <MenuItem Header="Factures" Command="{Binding ChangeViewCommand}" CommandParameter="invoice"/>
                 </MenuItem>
             </Menu>
         </StackPanel>

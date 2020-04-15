@@ -7,18 +7,32 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <ListView Grid.Row="0" ItemsSource="{Binding Invoices}"
+                        SelectedItem="{Binding SelectedInvoice}"
+                        x:Name="lvInvoices">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding InvoiceId}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0">Id Facture</Label>
             <Label Grid.Row="1" Grid.Column="0">Nom du client</Label>
             <Label Grid.Row="2" Grid.Column="0">Sous-total</Label>
@@ -27,12 +41,12 @@
             <Label Grid.Row="5" Grid.Column="0">Total</Label>
 
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedInvoice.InvoiceId}"></TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCustomer.Info}"></TextBlock>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedInvoice.SubTotal}"></TextBlock>
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedInvoice.FedTax}"></TextBlock>
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedInvoice.ProvTax}"></TextBlock>
-            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding SelectedInvoice.Total}"></TextBlock>
- 
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedInvoice.Customer.Info}"></TextBlock>
+            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedInvoice.SubTotal, StringFormat=.00}"></TextBlock>
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedInvoice.FedTax, StringFormat=.00}"></TextBlock>
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedInvoice.ProvTax, StringFormat=.00}"></TextBlock>
+            <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding SelectedInvoice.Total, StringFormat=.00}"></TextBlock>
+        </Grid>
 
     </Grid>
 </UserControl>

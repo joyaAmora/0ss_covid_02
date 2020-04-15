@@ -7,7 +7,6 @@ namespace BillingManagement.UI.ViewModels
 {
     class InvoiceViewModel: BaseViewModel
     {
-
         private ObservableCollection<Invoice> invoices;
 
         private Invoice selectedInvoice;

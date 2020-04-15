@@ -15,7 +15,8 @@ namespace app_models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public static int InvoiceId;
+        public static int invoiceId;
+        public int InvoiceId { get;  private set; }
         public DateTime CreationDateTime { get; private set; }
         public Customer Customer {
 
@@ -54,13 +55,13 @@ namespace app_models
         {
             Customer = client;
             CreationDateTime = DateTime.Now;
-            InvoiceId = Interlocked.Increment(ref InvoiceId);
+            InvoiceId = Interlocked.Increment(ref invoiceId);
         }
 
         public Invoice()
         {
             CreationDateTime = DateTime.Now;
-            InvoiceId = Interlocked.Increment(ref InvoiceId);
+            InvoiceId = Interlocked.Increment(ref invoiceId);
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
